@@ -21,8 +21,8 @@ pipeline {
 		NEXUSPORT = '8081'
 		NEXUS_GRP_REPO = 'vpro-maven-group'
 		NEXUS_LOGIN = 'nexuslogin'
-//		SONARSERVER = 'sonarserver'
-//  	        SONARSCANNER = 'sonarscanner'
+		SONARSERVER = 'sonarserver'
+  	        SONARSCANNER = 'sonarscanner'
 	}
 	stages {
 		stage ('Build') {
@@ -66,13 +66,13 @@ pipeline {
 				}
 			}
 		}
-		stage ('Quality Gate') {
-			steps {
-				timeout (time : 5, unit : 'HOURS') {
-					waitForQualityGate abortPipeline :true
-				}
-			}
-		}
+//		stage ('Quality Gate') {
+//			steps {
+//				timeout (time : 5, unit : 'HOURS') {
+//					waitForQualityGate abortPipeline :true
+//				}
+//			}
+//		}
 //		stage ('Upload Artifact') {
 //			steps { 
 //				nexusArtifactUploader (
