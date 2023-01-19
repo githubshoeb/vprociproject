@@ -1,4 +1,3 @@
-
 // def COLOR_MAP = [
 //	'SUCCESS' : 'good',
 //	'FAILURE' : 'danger',
@@ -15,13 +14,13 @@ pipeline {
 		NEXUS_USER = 'admin'
 		NEXUS_PASS = 'admin@123'
 		RELEASE_REPO = 'vprofile-release'
-		CENTRAL_REPO = 'vpro-maven-central'
+		CENTRAL_REPO = 'vpro-central'
 		NEXUSIP = '172.31.6.68'
 		NEXUSPORT = '8081'
-		NEXUS_GRP_REPO = 'vprofile-maven-group'
+		NEXUS_GRP_REPO = 'vpro-maven-group'
 		NEXUS_LOGIN = 'nexuslogin'
 		SONARSERVER = 'sonarserver'
-  	        SONARSCANNER = 'sonarscanner'
+  	    SONARSCANNER = 'sonarscanner'
 	}
 	stages {
 		stage ('Build') {
@@ -86,7 +85,7 @@ pipeline {
 						[
 							artifactId : 'vproapp',
 							classifier : '',
-							file : 'target/vprofile-v2.war',
+						file : 'target/vprofile-v2.war',
 							type : 'war'
 							
 						]
@@ -96,14 +95,15 @@ pipeline {
 			}
 		}
 	}
-	post{
-		always {
-			echo 'slack notification'
-			slackSend channel : '#cicd-1',
-				color : COLOR_MAP[currentBuild.currentResult],
-					message : "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More Infor at : ${env.BUILD_URL}"
-		
-		}
-	}
-
+//	post{
+//		always {
+//			echo 'slack notification'
+//			slackSend channel : '#cicd-1',
+//				color : COLOR_MAP[currentBuild.currentResult],
+//					message : "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More Infor at : ${env.BUILD_URL}"
+//		
+//		}
+//	}
+//
 }
+
